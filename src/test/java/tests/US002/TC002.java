@@ -1,5 +1,6 @@
 package tests.US002;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -30,7 +31,7 @@ public class TC002 {
         ReusableMethods.waitFor(2);
         Assert.assertTrue(alloverPage.myAccount.isDisplayed());
         ReusableMethods.waitFor(3);
-        alloverPage.myAccount.click();
+        alloverPage.jse.executeScript("arguments[0].click();",alloverPage.myAccount);
         //"Orders" bölümünün görünürlüğü doğrulanmalı
         Assert.assertTrue(alloverPage.orders.isDisplayed());
         //"Downloads" bölümünün görünürlüğü doğrulanmalı

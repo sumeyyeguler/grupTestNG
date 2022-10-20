@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
+import pages.AlloverPage;
 
 import java.io.File;
 import java.io.IOException;
@@ -145,4 +146,21 @@ public class ReusableMethods {
 
         return element;
     }
+
+    public static void signIn() {
+        AlloverPage alloverPage = new AlloverPage();
+        Actions actions=new Actions(Driver.getDriver());
+        //Belirtilen URL` ye gidilir
+        Driver.getDriver().get(ConfigReader.getProperty("alloverUrl"));
+        //"Singin" butonuna tıklanır
+        alloverPage.signIn.click();
+        //"Username or email adress" bölümüne vendor email girilir
+        //"Password" bölümüne verdor password girilir
+        //"Sing in" butonuna tıklanır
+        actions.click(alloverPage.signInEmail)
+                .sendKeys(ConfigReader.getProperty("alloverValidEmail"), Keys.TAB)
+                .sendKeys(ConfigReader.getProperty("alloverValidPassword"))
+                .sendKeys(Keys.TAB, Keys.TAB, Keys.TAB, Keys.ENTER).perform();
+    }
+
 }
